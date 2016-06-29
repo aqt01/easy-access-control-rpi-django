@@ -2,6 +2,7 @@
 # Created by https://www.gitignore.io/api/django,python
 
 ### Django ###
+
 *.log
 *.pot
 *.pyc
@@ -37,6 +38,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+*.pyc
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
