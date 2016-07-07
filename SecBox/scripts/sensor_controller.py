@@ -37,8 +37,9 @@ def run_sensor(sensor_model,sensor_controller):
                 distance = pulse_duration * 17150
 
                 distance = round(distance, 2)
+                # uncomment to see output of distance in django server log 
                 #print type(distance)
-                #print sensor_controller.objects.all()
+                
                 # We register the date and time when the sensor has detected an object
                 try:
                         #print 'lol'
@@ -49,7 +50,7 @@ def run_sensor(sensor_model,sensor_controller):
                                     print i.alarm_sound.url
                                     play_sound(BASE_DIR+'/'+i.alarm_sound.url)
                                     print BASE_DIR+'/'+i.alarm_sound.url
-                                #print sensor_object
+                                
                                 
                                 sensor_object.save()
                 except:
