@@ -1,8 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
-
+from scripts.play_sound import play_sound
 import datetime
+from SecBox.settings import BASE_DIR
 
 def run_sensor(sensor_model,sensor_controller):
         import time
@@ -43,11 +44,11 @@ def run_sensor(sensor_model,sensor_controller):
                         #print 'lol'
                         for i in sensor_controller.objects.all():                            
                             if (distance > i.min_distance and distance < i.max_distance):
-                                #print distance
-                                #print i.min_distance
-                                #print i.max_distance
- 
-                                sensor_object = sensor_model.objects.create(distance=distance,sensor=i)
+                                if (i.capture): 
+                                    sensor_object = sensor_model.objects.create(distance=distance,sensor=i)
+                                    print i.alarm_sound.url
+                                    play_sound(BASE_DIR+'/'+i.alarm_sound.url)
+                                    print BASE_DIR+'/'+i.alarm_sound.url
                                 #print sensor_object
                                 
                                 sensor_object.save()
